@@ -95,6 +95,45 @@
       const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).split('-').map(Number);
       return Math.floor((Date.UTC(parts[0],parts[1]-1,parts[2])-Date.UTC(parts[0],0,0))/86400000);
     };
+
+    const seasonalContents={
+      nowruz:{verse:'«پس اگر کسی در مسیح باشد، خلقتی تازه است؛ چیزهای کهنه درگذشت، اینک همه‌چیز تازه شده است.»',reference:'دوم قرنتیان فصل ۵ آیه ۱۷',title:'نوروز؛ آغازی تازه در مسیح',image:'bible-bread-sunset.png',reflection:'نوروز یادآور تازگی و آغاز دوباره است؛ اما عمیق‌ترین تازگی زمانی پدید می‌آید که زندگی ما در مسیح دگرگون شود. امروز گذشته را به فیض خدا بسپار و با امید، ایمان و اطاعتی تازه وارد فصل جدید زندگی شو.'},
+      newYear:{verse:'«رحمت‌های خداوند پایان نمی‌پذیرد؛ آنها هر بامداد تازه می‌شوند.»',reference:'مراثی فصل ۳ آیات ۲۲ تا ۲۳',title:'سال تازه زیر رحمت خدا',image:'bible-bread-sunset.png',reflection:'آغاز سال تازه فرصتی است تا به وفاداری خدا نگاه کنیم. آینده هنوز برای ما ناشناخته است، اما رحمت او هر صبح تازه می‌شود. برنامه‌ها، ترس‌ها و امیدهای خود را به خداوند بسپار و سال را با اعتماد به حضور او آغاز کن.'},
+      palm:{verse:'«مبارک است آن که به نام خداوند می‌آید!»',reference:'متی فصل ۲۱ آیه ۹',title:'پادشاه فروتن وارد می‌شود',image:'jesus-teaching.webp',reflection:'عیسی با شکوه ظاهری پادشاهان وارد اورشلیم نشد، بلکه با فروتنی آمد. او پادشاهی است که قلب انسان را با محبت و راستی فتح می‌کند. امروز از خود بپرس آیا فقط او را تحسین می‌کنی یا حقیقتاً فرمانروایی او را می‌پذیری.'},
+      maundy:{verse:'«یکدیگر را محبت کنید؛ همان‌گونه که من شما را محبت کردم.»',reference:'یوحنا فصل ۱۳ آیه ۳۴',title:'محبتی که خدمت می‌کند',image:'jesus-teaching.webp',reflection:'در شب شام آخر، عیسی محبت را فقط تعلیم نداد؛ آن را با خدمت و بخشیدن خود نشان داد. شاگردی مسیح یعنی محبت ما در رفتار، بخشش و خدمت به دیگران دیده شود.'},
+      goodFriday:{verse:'«حال آنکه به سبب نافرمانی‌های ما بدنش سوراخ شد و به جهت تقصیرهای ما درهم کوبیده گردید.»',reference:'اشعیا فصل ۵۳ آیه ۵',title:'صلیب؛ بهای محبت خدا',image:'jesus-teaching.webp',reflection:'جمعهٔ نیک ما را به صلیب می‌برد؛ جایی که عدالت و محبت خدا با یکدیگر ملاقات کردند. مسیح گناه ما را بر خود گرفت تا راه آشتی با خدا گشوده شود. امروز با فروتنی و شکرگزاری به فداکاری او بنگر.'},
+      easter:{verse:'«او اینجا نیست، زیرا همان‌گونه که گفته بود برخاسته است.»',reference:'متی فصل ۲۸ آیه ۶',title:'مسیح برخاسته است',image:'jesus-teaching.webp',reflection:'قیام عیسی اعلام می‌کند که گناه، تاریکی و مرگ سخن آخر را نمی‌گویند. چون مسیح زنده است، امید ما فقط یک احساس نیست؛ بر پیروزی واقعی او استوار است. امروز با امید قیام در زندگی تازه قدم بردار.'},
+      ascension:{verse:'«همین عیسی که از نزد شما به آسمان بالا برده شد، باز خواهد آمد.»',reference:'اعمال رسولان فصل ۱ آیه ۱۱',title:'مسیح سلطنت می‌کند',image:'jesus-teaching.webp',reflection:'صعود عیسی به معنای دورشدن او از قومش نیست؛ او خداوند زنده و پادشاهی است که سلطنت می‌کند و برای بازگشت خود وعده داده است. بنابراین کلیسا با امید، وفاداری و مأموریت زندگی می‌کند.'},
+      pentecost:{verse:'«همه از روح‌القدس پر گشتند.»',reference:'اعمال رسولان فصل ۲ آیه ۴',title:'قوت برای شهادت',image:'prayer-hope.webp',reflection:'در پنطیکاست، روح‌القدس شاگردان ترسان را برای شهادت و خدمت توانمند ساخت. زندگی مسیحی فقط با نیروی انسانی پیش نمی‌رود. امروز از خدا بخواه تو را از روح خود پر کند تا با محبت و شجاعت شاهد مسیح باشی.'},
+      reformation:{verse:'«پارسا به ایمان زیست خواهد کرد.»',reference:'رومیان فصل ۱ آیه ۱۷',title:'بازگشت به انجیل فیض',image:'articles-study.webp',reflection:'روز اصلاحات یادآور بازگشت کلیسا به اقتدار کتاب‌مقدس و حقیقت نجات به فیض و از راه ایمان است. ایمان حقیقی فقط دانستن یک آموزه نیست؛ اعتماد روزانه به مسیح و زیستن بر بنیاد کلام اوست.'},
+      thanksgiving:{verse:'«خداوند را سپاس گویید، زیرا نیکوست و محبتش جاودانه است.»',reference:'مزامیر فصل ۱۰۷ آیه ۱',title:'قلبی سرشار از شکرگزاری',image:'bible-bread-sunset.png',reflection:'شکرگزاری فقط واکنش به روزهای آسان نیست؛ تمرینی روحانی برای دیدن وفاداری خدا در تمام فصل‌های زندگی است. امروز نعمت‌های کوچک و بزرگ را به یاد آور و سپاس خود را در دعا و بخشندگی نشان بده.'},
+      repentance:{verse:'«اگر به گناهان خود اعتراف کنیم، او امین و عادل است تا گناهان ما را بیامرزد.»',reference:'اول یوحنا فصل ۱ آیه ۹',title:'راه بازگشت همیشه باز است',image:'prayer-hope.webp',reflection:'روز دعا و توبه دعوتی برای محکوم‌کردن خود نیست، بلکه فرصتی برای بازگشت صادقانه به خدای بخشنده است. آنچه میان تو و خدا فاصله انداخته پنهان نکن؛ در نور او اعتراف کن و بخشش و پاکی مسیح را بپذیر.'},
+      advent1:{verse:'«قومی که در تاریکی راه می‌رفتند، نوری عظیم دیدند.»',reference:'اشعیا فصل ۹ آیه ۲',title:'امید در دل تاریکی',image:'jesus-teaching.webp',reflection:'ظهور با انتظار آغاز می‌شود. حتی در تاریک‌ترین فصل‌ها، وعدهٔ خدا خاموش نمی‌شود. چشم خود را به مسیح بدوز؛ نوری که تاریکی قادر به شکست‌دادن آن نیست.'},
+      advent2:{verse:'«برای خداوند راه آماده کنید.»',reference:'لوقا فصل ۳ آیه ۴',title:'راه دل را آماده کن',image:'prayer-hope.webp',reflection:'انتظار برای آمدن مسیح فقط شمارش روزها نیست؛ دعوتی است برای آماده‌کردن دل. هر مانع، گناه یا دل‌مشغولی را که راه اطاعت را بسته است به خدا بسپار.'},
+      advent3:{verse:'«همیشه در خداوند شاد باشید.»',reference:'فیلیپیان فصل ۴ آیه ۴',title:'شادی‌ای که از حضور خدا می‌آید',image:'bible-bread-sunset.png',reflection:'شادی مسیحی وابسته به کامل‌بودن شرایط نیست. ما شادیم چون خدا نزدیک است و وعده‌هایش پایدارند. امروز اجازه بده انتظار میلاد، قلبت را با شادی‌ای عمیق و آرام پر کند.'},
+      advent4:{verse:'«زیرا نزد خدا هیچ امری ناممکن نیست.»',reference:'لوقا فصل ۱ آیه ۳۷',title:'اعتماد به وعدهٔ خدا',image:'jesus-teaching.webp',reflection:'در آستانهٔ میلاد، به خدایی نگاه می‌کنیم که وعدهٔ خود را به شیوه‌ای فراتر از تصور انسان به انجام رساند. آنچه را ناممکن می‌بینی به او بسپار و مانند مریم با ایمان پاسخ بده.'},
+      christmas:{verse:'«امروز در شهر داوود نجات‌دهنده‌ای برای شما به دنیا آمد که مسیح خداوند است.»',reference:'لوقا فصل ۲ آیات ۱۰ تا ۱۱',title:'نجات‌دهنده برای ما آمد',image:'jesus-teaching.webp',reflection:'در میلاد، خدا از دور با انسان سخن نگفت؛ در عیسی مسیح به میان ما آمد. این خبر خوش برای همهٔ مردم است: نجات‌دهنده متولد شده و راه آشتی، امید و زندگی با خدا گشوده است.'}
+    };
+    const easterUtc=year=>{const a=year%19,b=Math.floor(year/100),c=year%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),month=Math.floor((h+l-7*m+114)/31),day=(h+l-7*m+114)%31+1;return Date.UTC(year,month-1,day);};
+    const getSeasonalContent=()=>{
+      const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).split('-').map(Number);
+      const [year,month,day]=parts,today=Date.UTC(year,month-1,day),oneDay=86400000;
+      const persianParts=Object.fromEntries(new Intl.DateTimeFormat('en-u-ca-persian',{timeZone:'Europe/Berlin',month:'numeric',day:'numeric'}).formatToParts(new Date()).filter(p=>p.type==='month'||p.type==='day').map(p=>[p.type,Number(p.value)]));
+      if(persianParts.month===1&&persianParts.day===1)return seasonalContents.nowruz;
+      if(month===1&&day===1)return seasonalContents.newYear;
+      if(month===12&&(day===24||day===25))return seasonalContents.christmas;
+      if(month===10&&day===31)return seasonalContents.reformation;
+      const easter=easterUtc(year),easterOffset=Math.round((today-easter)/oneDay);
+      const easterMap={[-7]:'palm',[-3]:'maundy',[-2]:'goodFriday',[0]:'easter',[39]:'ascension',[49]:'pentecost'};
+      if(easterMap[easterOffset])return seasonalContents[easterMap[easterOffset]];
+      const oct1=Date.UTC(year,9,1),harvest=oct1+((7-new Date(oct1).getUTCDay())%7)*oneDay;
+      if(today===harvest)return seasonalContents.thanksgiving;
+      const nov23=Date.UTC(year,10,23),nov23Dow=new Date(nov23).getUTCDay(),repentance=nov23-(((nov23Dow-3+7)%7)||7)*oneDay;
+      if(today===repentance)return seasonalContents.repentance;
+      const nov27=Date.UTC(year,10,27),firstAdvent=nov27+((7-new Date(nov27).getUTCDay())%7)*oneDay;
+      for(let n=0;n<4;n++)if(today===firstAdvent+n*7*oneDay)return seasonalContents['advent'+(n+1)];
+      return null;
+    };
     const verseText=document.getElementById('dailyVerse'),verseRef=document.getElementById('dailyVerseRef');
     const biteTitle=document.getElementById('dailyBiteTitle'),biteText=document.getElementById('dailyBiteText');
     const shareCanvas=document.getElementById('dailyShareCanvas'),sharePreview=document.getElementById('dailySharePreview');
@@ -127,7 +166,7 @@
     let renderedDayKey;
     const renderDailyContent=()=>{
       const dayKey=berlinDayKey();
-      const content=dailyContents[(dayKey-1)%dailyContents.length];
+      const content=getSeasonalContent()||dailyContents[(dayKey-1)%dailyContents.length];
       currentDailyContent=content;
       if(verseText&&verseRef){verseText.textContent=content.verse;verseRef.textContent=content.reference;}
       if(biteTitle&&biteText){
