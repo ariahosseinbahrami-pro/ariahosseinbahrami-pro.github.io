@@ -107,7 +107,7 @@
       lines.forEach((item,index)=>ctx.fillText(item,x,y+(index*lineHeight)));
       return y+(lines.length*lineHeight);
     };
-    const loadShareBackground=src=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src=src;});
+    const loadShareBackground=src=>new Promise((resolve,reject)=>{const image=new Image();image.crossOrigin='anonymous';image.onload=()=>resolve(image);image.onerror=reject;image.src=new URL(src,'https://nanehayat.com/').href;});
     const createDailyShareImage=async content=>{
       if(!shareCanvas)return null;
       if(document.fonts&&document.fonts.ready)await document.fonts.ready;
