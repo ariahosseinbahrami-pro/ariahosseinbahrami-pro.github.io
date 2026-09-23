@@ -156,6 +156,7 @@
       const shade=ctx.createLinearGradient(0,0,0,h);shade.addColorStop(0,'rgba(3,16,24,.26)');shade.addColorStop(.48,'rgba(3,16,24,.52)');shade.addColorStop(1,'rgba(3,16,24,.76)');ctx.fillStyle=shade;ctx.fillRect(0,0,w,h);
       ctx.direction='rtl';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillStyle='#ffffff';ctx.shadowColor='rgba(0,0,0,.65)';ctx.shadowBlur=24;ctx.shadowOffsetY=5;ctx.font='800 76px Vazirmatn, Tahoma, sans-serif';
       drawWrappedRtl(ctx,content.title,w/2,440,820,106,2);
+      ctx.save();ctx.direction='ltr';ctx.textAlign='right';ctx.textBaseline='bottom';ctx.font='700 30px Inter, Arial, sans-serif';ctx.fillStyle='rgba(255,255,255,.94)';ctx.shadowColor='rgba(0,0,0,.78)';ctx.shadowBlur=14;ctx.shadowOffsetY=3;ctx.fillText('nanehayat.com',w-54,h-46);ctx.restore();
       return new Promise(resolve=>shareCanvas.toBlob(resolve,'image/png',.96));
     };
     const refreshDailyShareImage=async content=>{
