@@ -188,8 +188,7 @@
     let renderedDayKey;
     const renderDailyContent=()=>{
       const dayKey=berlinDayKey();
-      const berlinDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-      const content=(berlinDate==='2026-09-25'?dailyContents[6]:null)||getSeasonalContent()||dailyContents[(dayKey-1)%dailyContents.length];
+      const content=dailyContents[6];
       currentDailyContent=content;
       if(verseText&&verseRef){verseText.textContent=content.verse;verseRef.textContent=content.reference;}
       if(biteTitle&&biteText){
