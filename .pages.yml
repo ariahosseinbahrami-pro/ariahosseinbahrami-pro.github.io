@@ -1,0 +1,105 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: know_jesus
+    label: شناخت عیسی مسیح
+    type: file
+    path: content/know-jesus.json
+    format: json
+    fields:
+      - name: seo_title
+        label: عنوان صفحه در گوگل
+        type: string
+        required: true
+      - name: seo_description
+        label: توضیح کوتاه برای گوگل
+        type: text
+        required: true
+      - name: eyebrow
+        label: نوشته کوچک بالای عنوان
+        type: string
+        required: true
+      - name: title
+        label: عنوان اصلی صفحه
+        type: string
+        required: true
+      - name: intro
+        label: معرفی کوتاه
+        type: text
+        required: true
+      - name: hero_image
+        label: تصویر بالای صفحه
+        type: image
+        required: true
+      - name: hero_image_alt
+        label: توضیح تصویر
+        type: string
+        required: true
+      - name: cta_label
+        label: نوشته دکمه شروع
+        type: string
+        required: true
+      - name: lead
+        label: مقدمه صفحه
+        type: text
+        required: true
+      - name: sections
+        label: موضوع‌های شناخت عیسی
+        type: object
+        list:
+          min: 1
+          collapsible:
+            collapsed: true
+            summary: "{title}، بخش {index}"
+        fields:
+          - name: published
+            label: نمایش در سایت
+            type: boolean
+          - name: label
+            label: شماره یا نام بخش
+            type: string
+            required: true
+          - name: title
+            label: عنوان موضوع
+            type: string
+            required: true
+          - name: body
+            label: متن کامل
+            type: text
+            required: true
+            description: برای جداکردن پاراگراف‌ها، یک خط خالی بگذارید.
+          - name: verses
+            label: آیات مرتبط
+            type: string
+            list: true
+            description: هر آیه را جداگانه و مانند «یوحنا فصل ۳ آیه ۱۱» وارد کنید.
+      - name: sidebar
+        label: جعبه پرسش و راهنمایی
+        type: object
+        fields:
+          - name: heading
+            label: عنوان
+            type: string
+            required: true
+          - name: text
+            label: توضیح
+            type: text
+            required: true
+          - name: primary_label
+            label: نوشته دکمه اول
+            type: string
+            required: true
+          - name: primary_url
+            label: پیوند دکمه اول
+            type: string
+            required: true
+          - name: secondary_label
+            label: نوشته دکمه دوم
+            type: string
+            required: true
+          - name: secondary_url
+            label: پیوند دکمه دوم
+            type: string
+            required: true
