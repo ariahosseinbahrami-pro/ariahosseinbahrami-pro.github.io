@@ -94,8 +94,16 @@
               titleLink.href = section.url || '#';
               titleLink.style.color = 'inherit';
               titleLink.style.textDecoration = 'none';
+              titleLink.style.display = 'block';
               title.append(titleLink);
               article.append(title);
+              if (section.url) {
+                article.style.cursor = 'pointer';
+                article.setAttribute('role', 'link');
+                article.tabIndex = 0;
+                article.addEventListener('click', event => { if (!event.target.closest('a')) window.location.href = section.url; });
+                article.addEventListener('keydown', event => { if (event.key === 'Enter') window.location.href = section.url; });
+              }
 
               String(section.body || '').split(/\n\s*\n/).filter(Boolean).forEach(paragraph => {
                 article.append(create('p', '', paragraph.trim()));
@@ -103,6 +111,15 @@
 
               if (Array.isArray(section.verses) && section.verses.length) {
                 article.append(create('div', 'verse', section.verses.filter(Boolean).join('، ')));
+              }
+              if (section.url) {
+                const readMore = create('a', 'read-more', 'بیشتر بخوانید ←');
+                readMore.href = section.url;
+                readMore.style.display = 'inline-block';
+                readMore.style.marginTop = '12px';
+                readMore.style.fontWeight = '700';
+                readMore.style.textDecoration = 'none';
+                article.append(readMore);
               }
               chapters.append(article);
             });
