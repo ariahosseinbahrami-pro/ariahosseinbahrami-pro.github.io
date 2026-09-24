@@ -113,6 +113,12 @@
                 article.append(create('div', 'verse', section.verses.filter(Boolean).join('، ')));
               }
               if (section.url) {
+                const hint = create('p', 'read-hint', 'برای ادامهٔ مطلب روی «بیشتر بخوانید» کلیک کنید.');
+                hint.style.marginTop = '14px';
+                hint.style.marginBottom = '4px';
+                hint.style.fontSize = '.92rem';
+                hint.style.opacity = '.78';
+                article.append(hint);
                 const readMore = create('a', 'read-more', 'بیشتر بخوانید ←');
                 readMore.href = section.url;
                 readMore.style.display = 'inline-block';
