@@ -11,16 +11,45 @@
   <link rel="icon" type="image/png" href="logo-nane-hayat.png">
   <link rel="stylesheet" href="pathway.css">
 <style>
-.chapters .chapter{position:relative;overflow:hidden;border:1px solid rgba(163,126,55,.20);border-radius:22px;padding:26px;background:linear-gradient(145deg,#fff,#fbf7ed);box-shadow:0 10px 30px rgba(57,43,20,.08);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
-.chapters .chapter::before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#b38a3c,#e2c77f,#b38a3c)}
-.chapters .chapter:hover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(57,43,20,.15);border-color:rgba(163,126,55,.45)}
-.chapters .chapter .num{display:inline-block;padding:6px 12px;border-radius:999px;background:#f3ead4;color:#755817;font-weight:700;font-size:.86rem}
-.chapters .chapter h2{margin:16px 0 10px;font-size:1.55rem}
+:root{--gold:#a67c2e;--gold2:#dfc37a;--ink:#29251d;--cream:#faf7ef}
+body{background:radial-gradient(circle at 15% 5%,rgba(220,194,125,.13),transparent 30%),#fff}
+.wrap{width:min(94%,1440px)}
+header{backdrop-filter:blur(12px);background:rgba(255,255,255,.88)}
+.path-hero{position:relative;overflow:hidden;padding:70px 0 78px;background:linear-gradient(135deg,#f7f1e2 0%,#fff 48%,#f2ead6 100%)}
+.path-hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(187,145,61,.16),transparent 68%);top:-220px;right:-120px}
+.path-hero::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(166,124,46,.38),transparent)}
+.hero-inner{position:relative;z-index:1}
+.hero-layout{grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);gap:72px;align-items:center}
+.path-hero h1{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;letter-spacing:.2px;font-size:clamp(3rem,4.4vw,5.2rem);line-height:1.08;margin:14px 0 20px;color:#30291c}
+.path-hero p{font-size:1.2rem;line-height:2;max-width:680px;color:#5c5549}
+.eyebrow{display:inline-flex;padding:8px 16px;border:1px solid rgba(166,124,46,.25);border-radius:999px;background:rgba(255,255,255,.65);color:#82611f;font-weight:700}
+.hero-link{display:inline-flex;margin-top:16px;padding:13px 23px;border-radius:14px;background:linear-gradient(135deg,#8d681f,#b58a36);color:#fff!important;text-decoration:none;font-weight:800;box-shadow:0 10px 24px rgba(109,80,24,.2);transition:.22s ease}
+.hero-link:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(109,80,24,.27)}
+.hero-art.photo{position:relative;border-radius:30px;padding:10px;background:rgba(255,255,255,.7);box-shadow:0 25px 60px rgba(69,53,26,.18);border:1px solid rgba(166,124,46,.22)}
+.hero-art.photo::before{content:"";position:absolute;inset:-12px;border:1px solid rgba(166,124,46,.18);border-radius:36px;pointer-events:none}
+.hero-art.photo img{display:block;width:100%;height:430px;object-fit:cover;border-radius:23px}
+main{padding:68px 0 90px}
+#pageLead{max-width:980px;margin:0 auto 44px;text-align:center;font-size:1.22rem;line-height:2;color:#5b554a}
+.content-grid{grid-template-columns:minmax(0,1fr) 330px;gap:34px;align-items:start}
+.chapters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+.chapters .chapter{position:relative;overflow:hidden;min-height:310px;border:1px solid rgba(163,126,55,.20);border-radius:26px;padding:30px;background:linear-gradient(145deg,#fff,#fbf7ed);box-shadow:0 12px 34px rgba(57,43,20,.09);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease}
+.chapters .chapter::before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#9b7429,#e4c77d,#9b7429)}
+.chapters .chapter::after{content:"❧";position:absolute;left:20px;top:14px;font-family:Georgia,serif;font-size:2rem;color:rgba(166,124,46,.22)}
+.chapters .chapter:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(57,43,20,.16);border-color:rgba(163,126,55,.48)}
+.chapters .chapter .num{display:inline-block;padding:7px 14px;border-radius:999px;background:#f1e6ca;color:#745617;font-weight:800;font-size:.88rem}
+.chapters .chapter h2{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;letter-spacing:.2px;margin:18px 0 12px;font-size:1.85rem;line-height:1.45;color:#30291c}
 .chapters .chapter h2 a:hover{color:#8a671f!important}
-.chapters .chapter .read-hint{border-top:1px solid rgba(163,126,55,.16);padding-top:14px}
-.chapters .chapter .read-more{background:#8a671f;color:#fff!important;padding:10px 18px;border-radius:12px;box-shadow:0 5px 14px rgba(91,67,20,.18);transition:transform .2s ease,box-shadow .2s ease}
-.chapters .chapter .read-more:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(91,67,20,.25)}
-.path-hero h1,.chapters .chapter h2{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;letter-spacing:.2px}
+.chapters .chapter p{font-size:1.03rem;line-height:2;color:#625c51}
+.chapters .chapter .read-hint{border-top:1px solid rgba(163,126,55,.16);padding-top:15px}
+.chapters .chapter .read-more{background:linear-gradient(135deg,#86621d,#ae8230);color:#fff!important;padding:11px 19px;border-radius:12px;box-shadow:0 6px 16px rgba(91,67,20,.18);transition:.2s ease}
+.chapters .chapter .read-more:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(91,67,20,.26)}
+.side{position:sticky;top:100px;border:1px solid rgba(166,124,46,.22);border-radius:26px;padding:28px;background:linear-gradient(155deg,#fff,#f7f0df);box-shadow:0 14px 38px rgba(65,48,20,.09)}
+.side h3{font-family:'Lalezar','Vazirmatn',sans-serif;font-size:1.65rem;font-weight:400;margin-top:0}
+.side p{line-height:1.9;color:#625c51}
+.side a{border-radius:12px}
+@media(min-width:1500px){.hero-art.photo img{height:500px}.chapters .chapter{min-height:330px}}
+@media(max-width:1050px){.hero-layout{grid-template-columns:1fr;gap:38px}.hero-art.photo{max-width:760px;margin:auto}.content-grid{grid-template-columns:1fr}.side{position:static}.chapters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.path-hero{padding:45px 0 55px}.path-hero h1{font-size:2.7rem}.hero-art.photo img{height:300px}.chapters{grid-template-columns:1fr}.chapters .chapter{min-height:0;padding:24px}.content-grid{gap:24px}main{padding-top:48px}}
 </style>
 </head>
 <body>
