@@ -89,7 +89,13 @@
             data.sections.filter(section => section.published !== false).forEach((section, index) => {
               const article = create('article', 'chapter');
               article.append(create('div', 'num', section.label || `بخش ${index + 1}`));
-              article.append(create('h2', '', section.title || ''));
+              const title = create('h2', '', '');
+              const titleLink = create('a', '', section.title || '');
+              titleLink.href = section.url || '#';
+              titleLink.style.color = 'inherit';
+              titleLink.style.textDecoration = 'none';
+              title.append(titleLink);
+              article.append(title);
 
               String(section.body || '').split(/\n\s*\n/).filter(Boolean).forEach(paragraph => {
                 article.append(create('p', '', paragraph.trim()));
