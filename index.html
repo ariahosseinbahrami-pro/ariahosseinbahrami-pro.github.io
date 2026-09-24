@@ -53,7 +53,38 @@
 .daily-feature-image:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,17,25,.12),rgba(3,17,25,.5));pointer-events:none}
 .daily-feature-image strong{position:absolute;z-index:2;right:24px;left:24px;bottom:22px;color:#fff;text-align:center;font-family:'Lalezar','Vazirmatn',sans-serif;font-size:clamp(1.8rem,4vw,2.7rem);font-weight:400;line-height:1.3;text-shadow:0 3px 16px rgba(0,0,0,.8)}
 @media(max-width:760px){.daily-feature-image{margin:-20px -20px 20px;aspect-ratio:4/3}.daily-feature-image strong{right:14px;left:14px;bottom:15px;font-size:1.75rem}}
-<style>/* Force display font on the new-believer homepage slide */.story-slide.new .story-copy h2{font-family:'Lalezar','Vazirmatn',sans-serif!important;font-weight:400!important;font-style:normal!important;letter-spacing:.1px!important}</style></style></head>
+<style>/* Force display font on the new-believer homepage slide */.story-slide.new .story-copy h2{font-family:'Lalezar','Vazirmatn',sans-serif!important;font-weight:400!important;font-style:normal!important;letter-spacing:.1px!important}</style><style>
+/* Strong 3D call-to-action for the new-believer slide */
+.story-slide.new .story-link{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 24px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#f7d77f 0%,#d7a746 72%,#bd8930 100%);
+  color:#172a25!important;
+  border:1px solid rgba(113,76,18,.5);
+  box-shadow:0 7px 0 #8e6323,0 13px 24px rgba(45,35,16,.28),inset 0 1px 0 rgba(255,255,255,.65);
+  font-weight:900;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
+  transform:translateY(-2px);
+  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;
+}
+.story-slide.new .story-link:hover{
+  transform:translateY(-5px);
+  filter:brightness(1.04);
+  box-shadow:0 10px 0 #8e6323,0 18px 30px rgba(45,35,16,.32),inset 0 1px 0 rgba(255,255,255,.72);
+}
+.story-slide.new .story-link:active{
+  transform:translateY(4px);
+  box-shadow:0 2px 0 #8e6323,0 6px 12px rgba(45,35,16,.24),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.story-slide.new .story-link:focus-visible{outline:3px solid rgba(36,92,68,.45);outline-offset:5px}
+@media(max-width:760px){
+  .story-slide.new .story-link{padding:12px 20px;box-shadow:0 6px 0 #8e6323,0 11px 20px rgba(45,35,16,.26),inset 0 1px 0 rgba(255,255,255,.65)}
+}
+</style></style></head>
 <body>
   <header><div class="wrap nav"><a class="brand" href="#top"><span class="brand-mark"><img src="logo-nane-hayat.png" alt=""></span><span class="brand-title">نان حیات</span></a><nav class="links" aria-label="منوی اصلی"><a href="#bible">کتاب‌مقدس</a><a href="articles.html">مقالات</a><a href="#bites">لقمه‌های روحانی</a><a href="#sermons">موعظه‌ها</a><a href="#about">درباره من</a><a href="#questions">پرسش‌های ایمانی</a><a href="mailto:ariahosseinbahrami@gmail.com">ایمیل به من</a></nav><a class="nav-btn" href="#subscribe">عضویت در نوشته‌ها</a><button class="menu" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><nav class="mobile-menu" id="mobileMenu" aria-label="منوی موبایل"><div class="wrap"><a href="#bible">کتاب‌مقدس</a><a href="articles.html">مقالات</a><a href="#bites">لقمه‌های روحانی</a><a href="#sermons">موعظه‌ها</a><a href="#about">درباره من</a><a href="#questions">پرسش‌های ایمانی</a><a href="mailto:ariahosseinbahrami@gmail.com">ایمیل به من</a></div></nav></header>
   <main id="top">
