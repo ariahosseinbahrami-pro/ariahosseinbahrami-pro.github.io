@@ -49,7 +49,33 @@ main{padding:68px 0 90px}
 .side a{border-radius:12px}
 @media(min-width:1500px){.hero-art.photo img{height:500px.chapters .chapter{min-height:330px}}
 @media(max-width:1050px){.hero-layout{grid-template-columns:1fr;gap:38px}.hero-art.photo{max-width:760px;margin:auto}.side{position:relative}.chapters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.path-hero{padding:45px 0 55px}.path-hero h1{font-size:2.7rem}.hero-art.photo img{height:300px}.chapters{grid-template-columns:1fr}.chapters .chapter{min-height:0;padding:24px}.content-grid{gap:24px}main{padding-top:48px}}
+@media(max-width:700px){
+.wrap{width:min(92%,100%)}
+.path-hero{padding:34px 0 44px}
+.hero-layout{display:flex!important;flex-direction:column;gap:28px}
+.hero-layout>div:first-child{width:100%;text-align:center}
+.path-hero h1{font-size:2.45rem;line-height:1.25;margin:12px 0 14px}
+.path-hero p{font-size:1.04rem;line-height:1.9;margin-inline:auto}
+.eyebrow{font-size:.86rem}
+.hero-link{margin-top:12px}
+.hero-art.photo{width:100%;max-width:430px;margin:4px auto 0;padding:7px;border-radius:22px;transform:none!important}
+.hero-art.photo::before{inset:-6px;border-radius:27px}
+.hero-art.photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:17px}
+#pageLead{font-size:1.08rem;line-height:2;margin-bottom:30px;padding:0 4px}
+.chapters{grid-template-columns:1fr;gap:20px}
+.chapters .chapter{min-height:0;padding:23px;border-radius:21px}
+.chapters .chapter h2{font-size:1.6rem}
+.chapters .chapter p{font-size:1rem}
+.content-grid{gap:24px}
+.side{margin-top:34px;padding:24px 20px;border-radius:21px}
+main{padding:42px 0 65px}
+}
+@media(max-width:390px){
+.path-hero h1{font-size:2.15rem}
+.hero-art.photo{max-width:100%}
+.hero-art.photo img{aspect-ratio:1/1}
+.chapters .chapter{padding:20px}
+}
 </style>
 </head>
 <body>
