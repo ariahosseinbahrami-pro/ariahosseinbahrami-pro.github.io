@@ -111,8 +111,11 @@
 @media(max-width:760px){.story-slide.intro .story-link{padding:12px 20px;box-shadow:0 6px 0 #081d2b,0 11px 20px rgba(8,29,43,.26),inset 0 1px 0 rgba(255,255,255,.18)}}
 <style>
 .bread-rain-layer{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden}
-.bread-drop{position:absolute;top:-70px;left:var(--x);font-size:var(--size);filter:drop-shadow(0 5px 5px rgba(9,28,41,.18));animation:breadFall var(--dur) cubic-bezier(.22,.65,.45,1) var(--delay) forwards;will-change:transform,opacity}
-@keyframes breadFall{0%{transform:translate3d(0,-80px,0) rotate(0deg);opacity:0}8%{opacity:1}85%{opacity:1}100%{transform:translate3d(var(--drift),calc(100vh + 120px),0) rotate(var(--spin));opacity:0}}
+.baguette-drop{position:absolute;top:-110px;left:var(--x);width:var(--w);height:calc(var(--w)*.28);border-radius:48% 52% 50% 50%/58% 58% 42% 42%;background:linear-gradient(100deg,#9b5c18 0%,#d99132 18%,#f0bd68 46%,#d8892e 72%,#8d5015 100%);box-shadow:inset 0 3px 5px rgba(255,239,187,.5),inset 0 -4px 6px rgba(91,48,8,.3),0 7px 8px rgba(9,28,41,.16);animation:breadFall var(--dur) cubic-bezier(.22,.65,.45,1) var(--delay) forwards;will-change:transform,opacity}
+.baguette-drop:before{content:"";position:absolute;inset:18% 12%;border-radius:50%;background:repeating-linear-gradient(72deg,transparent 0 18%,rgba(255,231,169,.72) 19% 25%,rgba(123,66,12,.18) 26% 29%,transparent 30% 43%);opacity:.9}
+.light-drop{position:absolute;top:-30px;left:var(--x);width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle,#fff7c9 0%,#f4c35f 34%,rgba(226,166,54,.55) 55%,transparent 74%);box-shadow:0 0 12px rgba(240,193,83,.85),0 0 24px rgba(240,193,83,.42);animation:lightFall var(--dur) ease-in var(--delay) forwards;will-change:transform,opacity}
+@keyframes breadFall{0%{transform:translate3d(0,-110px,0) rotate(var(--start));opacity:0}8%{opacity:1}88%{opacity:1}100%{transform:translate3d(var(--drift),calc(100vh + 150px),0) rotate(var(--spin));opacity:0}}
+@keyframes lightFall{0%{transform:translate3d(0,-40px,0) scale(.55);opacity:0}12%{opacity:.95}75%{opacity:.8}100%{transform:translate3d(var(--drift),calc(100vh + 70px),0) scale(1.15);opacity:0}}
 .brand{cursor:pointer}
 @media(prefers-reduced-motion:reduce){.bread-rain-layer{display:none}}
 </style></head>
@@ -297,18 +300,29 @@
         if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
         const oldLayer=document.querySelector('.bread-rain-layer');if(oldLayer)oldLayer.remove();
         const layer=document.createElement('div');layer.className='bread-rain-layer';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);
-        const count=window.innerWidth<700?18:34;
-        for(let i=0;i<count;i++){
-          const bread=document.createElement('span');bread.className='bread-drop';bread.textContent='🍞';
-          bread.style.setProperty('--x',(Math.random()*96)+'vw');
-          bread.style.setProperty('--size',(20+Math.random()*24)+'px');
-          bread.style.setProperty('--dur',(1.9+Math.random()*1.5)+'s');
+        const mobile=window.innerWidth<700;
+        const breadCount=mobile?6:9,lightCount=mobile?18:30;
+        for(let i=0;i<breadCount;i++){
+          const bread=document.createElement('span');bread.className='baguette-drop';
+          bread.style.setProperty('--x',(2+Math.random()*94)+'vw');
+          bread.style.setProperty('--w',(mobile?38+Math.random()*24:46+Math.random()*34)+'px');
+          bread.style.setProperty('--dur',(2.35+Math.random()*1.15)+'s');
           bread.style.setProperty('--delay',(Math.random()*.55)+'s');
-          bread.style.setProperty('--drift',((-55+Math.random()*110))+'px');
-          bread.style.setProperty('--spin',((-220+Math.random()*440))+'deg');
+          bread.style.setProperty('--drift',((-70+Math.random()*140))+'px');
+          bread.style.setProperty('--start',((-35+Math.random()*70))+'deg');
+          bread.style.setProperty('--spin',((-210+Math.random()*420))+'deg');
           layer.appendChild(bread);
         }
-        setTimeout(()=>layer.remove(),4300);
+        for(let i=0;i<lightCount;i++){
+          const glow=document.createElement('span');glow.className='light-drop';
+          glow.style.setProperty('--x',(Math.random()*98)+'vw');
+          glow.style.setProperty('--size',(3+Math.random()*7)+'px');
+          glow.style.setProperty('--dur',(1.8+Math.random()*1.8)+'s');
+          glow.style.setProperty('--delay',(Math.random()*.8)+'s');
+          glow.style.setProperty('--drift',((-45+Math.random()*90))+'px');
+          layer.appendChild(glow);
+        }
+        setTimeout(()=>layer.remove(),4700);
       });
     }
 
