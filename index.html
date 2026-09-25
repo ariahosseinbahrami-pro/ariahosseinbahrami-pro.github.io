@@ -182,6 +182,7 @@
     }
 
     const dailyContents=[
+      {verse:'«اسلحه کامل خدا را بر تن کنید تا بتوانید در برابر حیله‌های ابلیس بایستید.»',reference:'افسسیان فصل ۶ آیه ۱۱',title:'سلاح خدا را بر تن کن',image:'articles-study.webp',reflection:'زندگی ایمانی فقط در آرامش و آسایش نمی‌گذرد؛ گاهی با وسوسه، ترس، ناامیدی و حملات روحانی روبه‌رو می‌شویم. خدا ما را بی‌دفاع نگذاشته است. او از ما می‌خواهد هر روز با حقیقت، ایمان، کلام خدا و دعا آماده باشیم و به قدرت خودمان تکیه نکنیم، بلکه در قوت او بایستیم. 🛡️ 🙏 امروز پیش از روبه‌رو شدن با نبردهای زندگی، خودت را با سلاح خدا مجهز کن.'},
       {verse:'«کلام تو برای پاهای من چراغ، و برای راه من نور است.»',reference:'مزامیر فصل ۱۱۹ آیه ۱۰۵',title:'نور برای قدم بعدی',image:'articles-study.webp',reflection:'کلام خدا همیشه تمام راه آینده را یک‌باره به ما نشان نمی‌دهد؛ اما برای قدمی که امروز باید برداریم نور کافی می‌بخشد. وقتی میان انتخاب‌ها سردرگم هستیم، می‌توانیم با خواندن کتاب‌مقدس، دعا و اطاعت از آنچه روشن شده است پیش برویم. خداوند در همین قدم‌های کوچک، مسیر ما را روشن‌تر می‌کند.'},
       {verse:'«فیض من تو را کافی است، زیرا قدرت من در ضعف به کمال می‌رسد.»',reference:'دوم قرنتیان فصل ۱۲ آیه ۹',title:'قدرت خدا در ضعف تو',image:'jesus-teaching.webp',reflection:'ضعف‌ها همیشه مانعی برای کار خدا نیستند؛ گاهی همان جایی هستند که فیض و قدرت او روشن‌تر دیده می‌شود. لازم نیست برای نزدیک‌شدن به خدا تظاهر کنیم که همیشه قوی هستیم. وقتی ناتوانی خود را صادقانه به مسیح می‌سپاریم، فیض او ما را نگه می‌دارد و قوت لازم برای ادامه‌دادن را می‌بخشد.'},
       {verse:'«تمام نگرانی خود را به او بسپارید، زیرا او به فکر شماست.»',reference:'اول پطرس فصل ۵ آیه ۷',title:'نگرانی‌هایت را به او بسپار',image:'prayer-hope.webp',reflection:'خدا از اضطراب‌ها و فشارهایی که در دل ما می‌گذرد بی‌خبر نیست. سپردن نگرانی به او به معنای انکار مشکل نیست؛ یعنی باور کنیم مجبور نیستیم بار آن را به تنهایی حمل کنیم. امروز هر نگرانی را با نام در دعا به خدا بسپار و اجازه بده محبت و مراقبت او قلبت را آرام کند.'},
@@ -266,7 +267,8 @@
     let renderedDayKey;
     const renderDailyContent=()=>{
       const dayKey=berlinDayKey();
-      const content=getSeasonalContent()||dailyContents[dayKey%dailyContents.length];
+      const todayBerlin=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+      const content=todayBerlin==='2026-09-26'?dailyContents[0]:(getSeasonalContent()||dailyContents[dayKey%dailyContents.length]);
       currentDailyContent=content;
       if(verseText&&verseRef){verseText.textContent=content.verse;verseRef.textContent=content.reference;}
       if(biteTitle&&biteText){
@@ -286,7 +288,7 @@
 
     const shareDaily=document.getElementById('shareDaily'),shareStatus=document.getElementById('shareStatus');
     if(shareDaily)shareDaily.addEventListener('click',async()=>{
-      const shareText=`نان حیات، لقمهٔ روحانی امروز\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\nنان حیات، لقمه‌ای از کلام خدا برای جان امروز\n\nآریا بهرامی\n\nhttps://nanehayat.com/`;
+      const shareText=`نان حیات، لقمهٔ روحانی امروز\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\nنان حیات، کلامی برای راه امروز\n\nآریا بهرامی\n\nبرای مطالعه مطالب بیشتر درباره عیسی مسیح، کتاب مقدس و رشد در ایمان، از وب‌سایت نان حیات دیدن کنید:\nhttps://nanehayat.com/`;
       try{
         if(!currentShareBlob)currentShareBlob=await createDailyShareImage(currentDailyContent);
         const dateName=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin'}).format(new Date());
