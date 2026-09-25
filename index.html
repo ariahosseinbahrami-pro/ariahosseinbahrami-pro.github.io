@@ -109,7 +109,13 @@
 .story-slide.intro .story-link:hover{transform:translateY(-5px);filter:brightness(1.08);box-shadow:0 11px 0 #0b2638,0 20px 34px rgba(8,29,43,.36),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -2px 0 rgba(0,0,0,.14)}
 .story-slide.intro .story-link:active{transform:translateY(4px);box-shadow:0 2px 0 #081d2b,0 6px 12px rgba(8,29,43,.24)}
 @media(max-width:760px){.story-slide.intro .story-link{padding:12px 20px;box-shadow:0 6px 0 #081d2b,0 11px 20px rgba(8,29,43,.26),inset 0 1px 0 rgba(255,255,255,.18)}}
-</style></style></head>
+<style>
+.bread-rain-layer{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden}
+.bread-drop{position:absolute;top:-70px;left:var(--x);font-size:var(--size);filter:drop-shadow(0 5px 5px rgba(9,28,41,.18));animation:breadFall var(--dur) cubic-bezier(.22,.65,.45,1) var(--delay) forwards;will-change:transform,opacity}
+@keyframes breadFall{0%{transform:translate3d(0,-80px,0) rotate(0deg);opacity:0}8%{opacity:1}85%{opacity:1}100%{transform:translate3d(var(--drift),calc(100vh + 120px),0) rotate(var(--spin));opacity:0}}
+.brand{cursor:pointer}
+@media(prefers-reduced-motion:reduce){.bread-rain-layer{display:none}}
+</style></head>
 <body>
   <header><div class="wrap nav"><a class="brand" href="#top"><span class="brand-mark"><img src="logo-nane-hayat.png" alt=""></span><span class="brand-title">نان حیات</span></a><nav class="links" aria-label="منوی اصلی"><a href="#bible">کتاب‌مقدس</a><a href="articles.html">مقالات</a><a href="#bites">لقمه‌های روحانی</a><a href="#sermons">موعظه‌ها</a><a href="#about">درباره من</a><a href="#questions">پرسش‌های ایمانی</a><a href="mailto:ariahosseinbahrami@gmail.com">ایمیل به من</a></nav><a class="nav-btn" href="#subscribe">عضویت در نوشته‌ها</a><button class="menu" type="button" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileMenu">☰</button></div><nav class="mobile-menu" id="mobileMenu" aria-label="منوی موبایل"><div class="wrap"><a href="#bible">کتاب‌مقدس</a><a href="articles.html">مقالات</a><a href="#bites">لقمه‌های روحانی</a><a href="#sermons">موعظه‌ها</a><a href="#about">درباره من</a><a href="#questions">پرسش‌های ایمانی</a><a href="mailto:ariahosseinbahrami@gmail.com">ایمیل به من</a></div></nav></header>
   <main id="top">
@@ -284,6 +290,27 @@
         if(error.name!=='AbortError'&&shareStatus)shareStatus.textContent='اشتراک‌گذاری انجام نشد؛ لطفاً دوباره تلاش کنید.';
       }
     });
+
+    const brandLink=document.querySelector('.brand');
+    if(brandLink){
+      brandLink.addEventListener('click',()=>{
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+        const oldLayer=document.querySelector('.bread-rain-layer');if(oldLayer)oldLayer.remove();
+        const layer=document.createElement('div');layer.className='bread-rain-layer';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);
+        const count=window.innerWidth<700?18:34;
+        for(let i=0;i<count;i++){
+          const bread=document.createElement('span');bread.className='bread-drop';bread.textContent='🍞';
+          bread.style.setProperty('--x',(Math.random()*96)+'vw');
+          bread.style.setProperty('--size',(20+Math.random()*24)+'px');
+          bread.style.setProperty('--dur',(1.9+Math.random()*1.5)+'s');
+          bread.style.setProperty('--delay',(Math.random()*.55)+'s');
+          bread.style.setProperty('--drift',((-55+Math.random()*110))+'px');
+          bread.style.setProperty('--spin',((-220+Math.random()*440))+'deg');
+          layer.appendChild(bread);
+        }
+        setTimeout(()=>layer.remove(),4300);
+      });
+    }
 
     const menuButton=document.querySelector('.menu'),mobileMenu=document.getElementById('mobileMenu');
     if(menuButton&&mobileMenu){
