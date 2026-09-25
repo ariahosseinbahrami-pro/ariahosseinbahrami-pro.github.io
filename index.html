@@ -296,8 +296,10 @@
 
     const brandLink=document.querySelector('.brand');
     if(brandLink){
-      brandLink.addEventListener('click',()=>{
+      let lastBreadRain=0;
+      const launchBreadRain=()=>{
         if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+        const now=Date.now();if(now-lastBreadRain<700)return;lastBreadRain=now;
         const oldLayer=document.querySelector('.bread-rain-layer');if(oldLayer)oldLayer.remove();
         const layer=document.createElement('div');layer.className='bread-rain-layer';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);
         const mobile=window.innerWidth<700;
@@ -322,8 +324,11 @@
           glow.style.setProperty('--drift',((-45+Math.random()*90))+'px');
           layer.appendChild(glow);
         }
-        setTimeout(()=>layer.remove(),4700);
-      });
+        setTimeout(()=>layer.remove(),6500);
+      };
+      brandLink.addEventListener('click',launchBreadRain);
+      brandLink.addEventListener('touchend',e=>{launchBreadRain();},{passive:true});
+      brandLink.addEventListener('pointerup',e=>{if(e.pointerType==='touch')launchBreadRain();});
     }
 
     const menuButton=document.querySelector('.menu'),mobileMenu=document.getElementById('mobileMenu');
