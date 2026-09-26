@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title id="pageTitle">Jesus Christus kennenlernen | Brot des Lebens</title>
-  <meta id="pageDescription" name="description" content="راهنمایی ساده برای فارسی‌زبانانی که می‌خواهند عیسی مسیح و پیام انجیل را بشناسند.">
+  <meta id="pageDescription" name="description" content="Eine schrittweise Einführung in Jesus Christus, seine Identität, sein Leben, seine Botschaft, das Kreuz, die Auferstehung und die Rettung.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -131,94 +131,28 @@ main{padding:42px 0 65px}
         return element;
       };
 
-      fetch('content/know-jesus.json', { cache: 'no-store' })
-        .then(response => {
-          if (!response.ok) throw new Error('Content unavailable');
-          return response.json();
-        })
-        .then(data => {
-          if (data.seo_title) document.title = data.seo_title;
-          const description = document.getElementById('pageDescription');
-          if (description && data.seo_description) description.setAttribute('content', data.seo_description);
+      const data = {
+        seo_title:'Jesus Christus kennenlernen | Brot des Lebens',
+        seo_description:'Eine schrittweise Einführung in Jesus Christus, seine Identität, sein Leben, seine Botschaft, das Kreuz, die Auferstehung und die Rettung.',
+        eyebrow:'Für Menschen auf der Suche nach Wahrheit',
+        title:'Jesus Christus kennenlernen',
+        intro:'Lies die Themen dieser Reihe Schritt für Schritt und lerne die Person, das Leben und die Botschaft Jesu Christi kennen.',
+        cta_label:'Hier beginnen',
+        lead:'Wähle ein Thema aus, um den vollständigen Beitrag zu lesen. Diese Reihe wird nach und nach um weitere Themen ergänzt.',
+        sections:[
+          {published:true,label:'Teil 1',title:'Wer ist Jesus Christus?',body:'Jesus Christus steht im Zentrum des christlichen Glaubens. Hier geht es um seine Identität, seine Menschwerdung, die Bedeutung des Titels Christus und darum, warum es entscheidend ist, ihn kennenzulernen.',url:'jesus-who-is.html'},
+          {published:true,label:'Teil 2',title:'Prophezeiungen des Alten Testaments über Jesus Christus',body:'Von der ersten Verheißung der Rettung über Abraham und den König aus Davids Linie bis Bethlehem, zum demütigen König und leidenden Knecht: Wie verbindet das Neue Testament diese Texte mit Jesus Christus?',url:'jesus-old-testament-prophecies.html'},
+          {published:true,label:'Teil 3',title:'Die Geburt Jesu und sein Kommen in die Welt',body:'Von der Ankündigung an Maria und der Geburt in Bethlehem bis zur Bedeutung von Immanuel, „Gott mit uns“: die Geschichte vom Kommen Jesu und seiner rettenden Sendung.',url:'jesus-birth-and-coming.html'},
+          {published:true,label:'Teil 4',title:'Was sagte Jesus über sich selbst?',body:'Jesus bezeichnete sich als Brot des Lebens, Licht der Welt, guten Hirten, Auferstehung und Leben sowie Weg, Wahrheit und Leben. Was sagen diese Worte über seine Identität?',url:'jesus-what-he-said-about-himself.html'}
+        ],
+        sidebar:{heading:'Hast du eine Frage?',text:'Du musst nicht schon alles wissen. Du kannst deine Frage vertraulich schreiben.',primary_label:'Frage senden',primary_url:'index.html#questions',secondary_label:'Erste Schritte im Glauben',secondary_url:'new-believer.html'}
+      };
+      if(data.seo_title) document.title=data.seo_title;
+      const description=document.getElementById('pageDescription'); if(description&&data.seo_description)description.setAttribute('content',data.seo_description);
+      setText('heroEyebrow',data.eyebrow);setText('heroTitle',data.title);setText('heroIntro',data.intro);setText('heroCta',data.cta_label);setText('pageLead',data.lead);
+      if(Array.isArray(data.sections)){const chapters=document.getElementById('chapters');chapters.replaceChildren();data.sections.filter(section=>section.published!==false).forEach((section,index)=>{const article=create('article','chapter');article.append(create('div','num',section.label||('Teil '+(index+1))));const title=create('h2','','');const titleLink=create('a','',section.title||'');titleLink.href=section.url||'#';titleLink.style.color='inherit';titleLink.style.textDecoration='none';titleLink.style.display='block';title.append(titleLink);article.append(title);if(section.url){article.style.cursor='pointer';article.setAttribute('role','link');article.tabIndex=0;article.addEventListener('click',event=>{if(!event.target.closest('a'))window.location.href=section.url});article.addEventListener('keydown',event=>{if(event.key==='Enter')window.location.href=section.url})}const bodyText=String(section.body||'').replace(/\s+/g,' ').trim();if(bodyText){const shortBody=bodyText.length>145?bodyText.slice(0,145).trim().replace(/[,;:\-]+$/,'')+'…':bodyText;article.append(create('p','card-summary',shortBody))}if(section.url){const hint=create('p','read-hint','Für den vollständigen Beitrag auf „Mehr lesen“ klicken.');hint.style.marginTop='14px';hint.style.marginBottom='4px';hint.style.fontSize='.92rem';hint.style.opacity='.78';article.append(hint);const readMore=create('a','read-more','Mehr lesen →');readMore.href=section.url;readMore.style.display='inline-block';readMore.style.marginTop='12px';readMore.style.fontWeight='700';readMore.style.textDecoration='none';article.append(readMore)}chapters.append(article)})}
+      if(data.sidebar){const sidebar=document.getElementById('sidebar');sidebar.replaceChildren();sidebar.append(create('h3','',data.sidebar.heading));sidebar.append(create('p','',data.sidebar.text));const primary=create('a','gold',data.sidebar.primary_label);primary.href=data.sidebar.primary_url;sidebar.append(primary);const secondary=create('a','',data.sidebar.secondary_label);secondary.href=data.sidebar.secondary_url;sidebar.append(secondary)}
 
-          setText('heroEyebrow', data.eyebrow);
-          setText('heroTitle', data.title);
-          setText('heroIntro', data.intro);
-          setText('heroCta', data.cta_label);
-          setText('pageLead', data.lead);
-
-          const image = document.getElementById('heroImage');
-          if (image && data.hero_image) image.src = data.hero_image;
-          if (image && data.hero_image_alt) image.alt = data.hero_image_alt;
-
-          if (Array.isArray(data.sections)) {
-            const chapters = document.getElementById('chapters');
-            chapters.replaceChildren();
-            data.sections.filter(section => section.published !== false).forEach((section, index) => {
-              const article = create('article', 'chapter');
-              article.append(create('div', 'num', section.label || `بخش ${index + 1}`));
-              const title = create('h2', '', '');
-              const titleLink = create('a', '', section.title || '');
-              titleLink.href = section.url || '#';
-              titleLink.style.color = 'inherit';
-              titleLink.style.textDecoration = 'none';
-              titleLink.style.display = 'block';
-              title.append(titleLink);
-              article.append(title);
-              if (section.url) {
-                article.style.cursor = 'pointer';
-                article.setAttribute('role', 'link');
-                article.tabIndex = 0;
-                article.addEventListener('click', event => { if (!event.target.closest('a')) window.location.href = section.url; });
-                article.addEventListener('keydown', event => { if (event.key === 'Enter') window.location.href = section.url; });
-              }
-
-              const bodyText = String(section.body || '').replace(/\s+/g, ' ').trim();
-              if (bodyText) {
-                const shortBody = bodyText.length > 145 ? bodyText.slice(0, 145).trim().replace(/[،؛,:\-]+$/, '') + '…' : bodyText;
-                article.append(create('p', 'card-summary', shortBody));
-              }
-
-              if (Array.isArray(section.verses) && section.verses.length) {
-                article.append(create('div', 'verse', section.verses.filter(Boolean).join('، ')));
-              }
-              if (section.url) {
-                const hint = create('p', 'read-hint', 'برای ادامهٔ مطلب روی «بیشتر بخوانید» کلیک کنید.');
-                hint.style.marginTop = '14px';
-                hint.style.marginBottom = '4px';
-                hint.style.fontSize = '.92rem';
-                hint.style.opacity = '.78';
-                article.append(hint);
-                const readMore = create('a', 'read-more', 'بیشتر بخوانید ←');
-                readMore.href = section.url;
-                readMore.style.display = 'inline-block';
-                readMore.style.marginTop = '12px';
-                readMore.style.fontWeight = '700';
-                readMore.style.textDecoration = 'none';
-                article.append(readMore);
-              }
-              chapters.append(article);
-            });
-          }
-
-          if (data.sidebar) {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.replaceChildren();
-            sidebar.append(create('h3', '', data.sidebar.heading || 'Hast du eine Frage?'));
-            sidebar.append(create('p', '', data.sidebar.text || ''));
-
-            const primary = create('a', 'gold', data.sidebar.primary_label || 'Frage senden');
-            primary.href = data.sidebar.primary_url || 'index.html#questions';
-            sidebar.append(primary);
-
-            const secondary = create('a', '', data.sidebar.secondary_label || 'Erste Schritte im Glauben');
-            secondary.href = data.sidebar.secondary_url || 'new-believer.html';
-            sidebar.append(secondary);
-          }
-        })
-        .catch(() => {
-          // محتوای ثابت صفحه به‌عنوان نسخه پشتیبان نمایش داده می‌شود.
-        });
     })();
   </script>
   <script src="../language-switcher.js" defer></script>
