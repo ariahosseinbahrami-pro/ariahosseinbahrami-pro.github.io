@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title id="pageTitle">شناخت عیسی مسیح | Brot des Lebens</title>
+  <meta id="pageDescription" name="description" content="راهنمایی ساده برای فارسی‌زبانانی که می‌خواهند عیسی مسیح و پیام انجیل را بشناسند.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../logo-nane-hayat.png">
+  <link rel="stylesheet" href="../pathway.css">
+<style>
+:root{--gold:#a67c2e;--gold2:#dfc37a;--ink:#29251d;--cream:#faf7ef}
+body{background:radial-gradient(circle at 15% 5%,rgba(220,194,125,.13),transparent 30%),#fff}
+.wrap{width:min(94%,1440px)}
+header{backdrop-filter:blur(12px);background:rgba(255,255,255,.88)}
+.path-hero{position:relative;overflow:hidden;padding:70px 0 78px;background:linear-gradient(135deg,#f7f1e2 0%,#fff 48%,#f2ead6 100%)}
+.path-hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(187,145,61,.16),transparent 68%);top:-220px;right:-120px}
+.path-hero::after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(166,124,46,.38),transparent)}
+.hero-inner{position:relative;z-index:1}
+.hero-layout{grid-template-columns:1fr;gap:0;align-items:center}
+.path-hero h1{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;letter-spacing:.2px;font-size:clamp(3rem,4.4vw,5.2rem);line-height:1.08;margin:14px 0 20px;color:#30291c}
+.path-hero p{font-size:1.2rem;line-height:2;max-width:680px;color:#5c5549}
+.eyebrow{display:inline-flex;padding:8px 16px;border:1px solid rgba(166,124,46,.25);border-radius:999px;background:rgba(255,255,255,.65);color:#82611f;font-weight:700}
+.hero-link{display:inline-flex;margin-top:16px;padding:13px 25px;border-radius:14px;background:linear-gradient(180deg,#e1b65d 0%,#b98529 58%,#93651b 100%);color:#241b0d!important;text-decoration:none;font-weight:800;border:1px solid #e7c574;border-bottom:5px solid #704a12;box-shadow:0 7px 0 #60400f,0 14px 28px rgba(109,80,24,.22),inset 0 1px 0 rgba(255,255,255,.5);transition:.18s ease}
+.hero-link:hover{transform:translateY(-3px);box-shadow:0 10px 0 #60400f,0 18px 32px rgba(109,80,24,.27),inset 0 1px 0 rgba(255,255,255,.55)}.hero-link:active{transform:translateY(4px);box-shadow:0 2px 0 #60400f,0 8px 16px rgba(109,80,24,.2)}
+.hero-art.photo{position:relative;border-radius:30px;padding:10px;background:rgba(255,255,255,.7);box-shadow:0 25px 60px rgba(69,53,26,.18);border:1px solid rgba(166,124,46,.22)}
+.hero-art.photo::before{content:"";position:absolute;inset:-12px;border:1px solid rgba(166,124,46,.18);border-radius:36px;pointer-events:none}
+.hero-art.photo img{display:block;width:100%;height:430px;object-fit:cover;object-position:center;border-radius:23px}
+main{padding:68px 0 90px}
+#pageLead{max-width:980px;margin:0 auto 44px;text-align:center;font-size:1.22rem;line-height:2;color:#5b554a}
+.content-grid{display:block}
+.chapters{display:grid;grid-template-columns:1fr;gap:20px;max-width:1050px;margin:0 auto}
+.chapters .chapter{position:relative;overflow:hidden;min-height:0;border:1px solid rgba(163,126,55,.20);border-radius:26px;padding:30px;background:linear-gradient(145deg,#fff,#fbf7ed);box-shadow:0 12px 34px rgba(57,43,20,.09);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease}
+.chapters .chapter::before{content:"";position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#9b7429,#e4c77d,#9b7429)}
+.chapters .chapter::after{content:"❧";position:absolute;left:20px;top:14px;font-family:Georgia,serif;font-size:2rem;color:rgba(166,124,46,.22)}
+.chapters .chapter:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(57,43,20,.16);border-color:rgba(163,126,55,.48)}
+.chapters .chapter .num{display:inline-block;padding:7px 14px;border-radius:999px;background:#f1e6ca;color:#745617;font-weight:800;font-size:.88rem}
+.chapters .chapter h2{font-family:'Lalezar','Vazirmatn',sans-serif;font-weight:400;letter-spacing:.2px;margin:18px 0 12px;font-size:1.85rem;line-height:1.45;color:#30291c}
+.chapters .chapter h2 a:hover{color:#8a671f!important}
+.chapters .chapter p{font-size:1.03rem;line-height:2;color:#625c51}
+.chapters .chapter .read-hint{border-top:1px solid rgba(163,126,55,.16);padding-top:15px}
+.chapters .chapter .read-more{background:linear-gradient(180deg,#b58a36,#86621d);color:#fff!important;padding:11px 20px;border-radius:12px;border-bottom:4px solid #5f4315;box-shadow:0 5px 0 #4f3812,0 10px 18px rgba(91,67,20,.18);transition:.18s ease}
+.chapters .chapter .read-more:hover{transform:translateY(-2px);box-shadow:0 7px 0 #4f3812,0 13px 22px rgba(91,67,20,.24)}.chapters .chapter .read-more:active{transform:translateY(3px);box-shadow:0 2px 0 #4f3812,0 6px 12px rgba(91,67,20,.18)}
+.side{position:relative;max-width:900px;margin:48px auto 0;text-align:center;border:1px solid rgba(166,124,46,.22);border-radius:26px;padding:30px 34px;background:linear-gradient(155deg,#fff,#f7f0df);box-shadow:0 14px 38px rgba(65,48,20,.09)}
+.side h3{font-family:'Lalezar','Vazirmatn',sans-serif;font-size:1.65rem;font-weight:400;margin-top:0;color:#30291c!important}
+.side p{line-height:1.9;color:#4f493f!important}
+.side a{border-radius:12px;background:#6f4d2f!important;color:#fff!important;border:1px solid #6f4d2f!important;box-shadow:0 6px 16px rgba(74,48,25,.14)}
+.side a:hover{background:#5d3f27!important;border-color:#5d3f27!important;color:#fff!important}
+@media(min-width:1500px){.wrap{width:min(92%,1500px)}}
+@media(max-width:1050px){.hero-layout{grid-template-columns:1fr;gap:38px}.hero-art.photo{max-width:760px;margin:auto}.side{position:relative}.chapters{grid-template-columns:1fr}}
+@media(max-width:700px){
+.wrap{width:min(92%,100%)}
+.path-hero{padding:34px 0 44px}
+.hero-layout{display:flex!important;flex-direction:column;gap:28px}
+.hero-layout>div:first-child{width:100%;text-align:center}
+.path-hero h1{font-size:2.45rem;line-height:1.25;margin:12px 0 14px}
+.path-hero p{font-size:1.04rem;line-height:1.9;margin-inline:auto}
+.eyebrow{font-size:.86rem}
+.hero-link{margin-top:12px}
+.hero-art.photo{width:100%;max-width:430px;margin:4px auto 0;padding:7px;border-radius:22px;transform:none!important}
+.hero-art.photo::before{inset:-6px;border-radius:27px}
+.hero-art.photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:17px}
+#pageLead{font-size:1.08rem;line-height:2;margin-bottom:30px;padding:0 4px}
+.chapters{grid-template-columns:1fr;gap:20px}
+.chapters .chapter{min-height:0;padding:23px;border-radius:21px}
+.chapters .chapter h2{font-size:1.6rem}
+.chapters .chapter p{font-size:1rem}
+.content-grid{gap:24px}
+.side{margin-top:34px;padding:24px 20px;border-radius:21px}
+main{padding:42px 0 65px}
+}
+@media(max-width:390px){
+.path-hero h1{font-size:2.15rem}
+.hero-art.photo{max-width:100%}
+.hero-art.photo img{aspect-ratio:1/1}
+.chapters .chapter{padding:20px}
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html"><img src="../logo-nane-hayat.png" alt=""><span>Brot des Lebens</span></a>
+      <a class="back" href="index.html">Startseite</a>
+    </div>
+  </header>
+
+  <section class="path-hero">
+    <div class="wrap hero-inner hero-layout">
+      <div>
+        <div class="eyebrow" id="heroEyebrow">برای جویندگان حقیقت</div>
+        <h1 id="heroTitle">Ich möchte Jesus kennenlernen</h1>
+        <p id="heroIntro">Eine klare und verständliche Einführung in Jesus, die Botschaft des Evangeliums und seine Einladung zu einem neuen Leben.</p>
+        <a class="hero-link" id="heroCta" href="#start">Hier beginnen</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <main id="start">
+    <div class="wrap">
+      <p class="lead" id="pageLead">Christlicher Glaube ist in erster Linie kein Regelwerk, sondern eine Einladung, Jesus Christus kennenzulernen und mit Gott versöhnt zu werden.</p>
+      <div class="content-grid">
+        <div class="chapters" id="chapters">
+          <article class="chapter"><div class="num">بخش ۱</div><h2>Wer ist Jesus Christus?</h2><p>عیسی فقط یک معلم اخلاق یا پیامبر نبود. کتاب‌مقدس او را کلمهٔ خدا می‌داند که انسان شد، در میان ما زندگی کرد و خدا را به ما شناساند.</p><div class="verse">یوحنا فصل ۱ آیات ۱ و ۱۴</div></article>
+          <article class="chapter"><div class="num">بخش ۲</div><h2>Warum brauchen wir Rettung?</h2><p>گناه رابطهٔ انسان با خدا را شکسته است و هیچ‌کس با اعمال خوب خود نمی‌تواند این فاصله را از بین ببرد. خدا از روی محبت، راه آشتی را در مسیح فراهم کرد.</p><div class="verse">رومیان فصل ۳ آیه ۲۳، رومیان فصل ۵ آیه ۸</div></article>
+          <article class="chapter"><div class="num">بخش ۳</div><h2>Was bedeuten Kreuz und Auferstehung?</h2><p>عیسی بر صلیب بهای گناه را پرداخت و از مردگان برخاست. رستاخیز او نشان می‌دهد که مرگ و گناه حرف آخر را نمی‌زنند.</p><div class="verse">اول قرنتیان فصل ۱۵ آیات ۳ و ۴</div></article>
+          <article class="chapter"><div class="num">بخش ۴</div><h2>Wie kann ich darauf antworten?</h2><p>با صداقت نزد خدا بیا، به عیسی اعتماد کن، گناه خود را اعتراف کن و زندگی‌ات را به او بسپار. دعا جادوی کلمات نیست؛ سخن صادقانهٔ قلب با خداست.</p><div class="verse">رومیان فصل ۱۰ آیات ۹ و ۱۰</div></article>
+        </div>
+        <aside class="side" id="sidebar">
+          <h3>Hast du eine Frage?</h3>
+          <p>لازم نیست همه‌چیز را از قبل بدانید. پرسش خود را محرمانه بنویسید.</p>
+          <a class="gold" href="index.html#questions">Frage senden</a>
+          <a href="new-believer.html">Erste Schritte im Glauben</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer><div class="wrap foot"><div><strong>Brot des Lebens</strong><br><small>برای جلال مسیح و بنای کلیسا</small></div><a href="index.html#questions">Schick mir deine Frage ←</a></div></footer>
+
+  <script>
+    (() => {
+      const setText = (id, value) => { const element = document.getElementById(id); if (element && value) element.textContent = value; };
+      const create = (tag, className, text) => {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text) element.textContent = text;
+        return element;
+      };
+
+      fetch('content/know-jesus.json', { cache: 'no-store' })
+        .then(response => {
+          if (!response.ok) throw new Error('Content unavailable');
+          return response.json();
+        })
+        .then(data => {
+          if (data.seo_title) document.title = data.seo_title;
+          const description = document.getElementById('pageDescription');
+          if (description && data.seo_description) description.setAttribute('content', data.seo_description);
+
+          setText('heroEyebrow', data.eyebrow);
+          setText('heroTitle', data.title);
+          setText('heroIntro', data.intro);
+          setText('heroCta', data.cta_label);
+          setText('pageLead', data.lead);
+
+          const image = document.getElementById('heroImage');
+          if (image && data.hero_image) image.src = data.hero_image;
+          if (image && data.hero_image_alt) image.alt = data.hero_image_alt;
+
+          if (Array.isArray(data.sections)) {
+            const chapters = document.getElementById('chapters');
+            chapters.replaceChildren();
+            data.sections.filter(section => section.published !== false).forEach((section, index) => {
+              const article = create('article', 'chapter');
+              article.append(create('div', 'num', section.label || `بخش ${index + 1}`));
+              const title = create('h2', '', '');
+              const titleLink = create('a', '', section.title || '');
+              titleLink.href = section.url || '#';
+              titleLink.style.color = 'inherit';
+              titleLink.style.textDecoration = 'none';
+              titleLink.style.display = 'block';
+              title.append(titleLink);
+              article.append(title);
+              if (section.url) {
+                article.style.cursor = 'pointer';
+                article.setAttribute('role', 'link');
+                article.tabIndex = 0;
+                article.addEventListener('click', event => { if (!event.target.closest('a')) window.location.href = section.url; });
+                article.addEventListener('keydown', event => { if (event.key === 'Enter') window.location.href = section.url; });
+              }
+
+              const bodyText = String(section.body || '').replace(/\s+/g, ' ').trim();
+              if (bodyText) {
+                const shortBody = bodyText.length > 145 ? bodyText.slice(0, 145).trim().replace(/[،؛,:\-]+$/, '') + '…' : bodyText;
+                article.append(create('p', 'card-summary', shortBody));
+              }
+
+              if (Array.isArray(section.verses) && section.verses.length) {
+                article.append(create('div', 'verse', section.verses.filter(Boolean).join('، ')));
+              }
+              if (section.url) {
+                const hint = create('p', 'read-hint', 'برای ادامهٔ مطلب روی «بیشتر بخوانید» کلیک کنید.');
+                hint.style.marginTop = '14px';
+                hint.style.marginBottom = '4px';
+                hint.style.fontSize = '.92rem';
+                hint.style.opacity = '.78';
+                article.append(hint);
+                const readMore = create('a', 'read-more', 'بیشتر بخوانید ←');
+                readMore.href = section.url;
+                readMore.style.display = 'inline-block';
+                readMore.style.marginTop = '12px';
+                readMore.style.fontWeight = '700';
+                readMore.style.textDecoration = 'none';
+                article.append(readMore);
+              }
+              chapters.append(article);
+            });
+          }
+
+          if (data.sidebar) {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.replaceChildren();
+            sidebar.append(create('h3', '', data.sidebar.heading || 'Hast du eine Frage?'));
+            sidebar.append(create('p', '', data.sidebar.text || ''));
+
+            const primary = create('a', 'gold', data.sidebar.primary_label || 'Frage senden');
+            primary.href = data.sidebar.primary_url || 'index.html#questions';
+            sidebar.append(primary);
+
+            const secondary = create('a', '', data.sidebar.secondary_label || 'Erste Schritte im Glauben');
+            secondary.href = data.sidebar.secondary_url || 'new-believer.html';
+            sidebar.append(secondary);
+          }
+        })
+        .catch(() => {
+          // محتوای ثابت صفحه به‌عنوان نسخه پشتیبان نمایش داده می‌شود.
+        });
+    })();
+  </script>
+  <script src="../language-switcher.js" defer></script>
+</body>
+</html>
