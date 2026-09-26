@@ -249,6 +249,19 @@
       return y+(lines.length*lineHeight);
     };
     const loadShareBackground=src=>new Promise((resolve,reject)=>{const image=new Image();image.crossOrigin='anonymous';image.onload=()=>resolve(image);image.onerror=reject;image.src=new URL(src,'https://nanehayat.com/').href;});
+    const shareLang=(()=>{const q=new URLSearchParams(location.search),raw=(location.hostname.endsWith('.translate.goog')?(q.get('_x_tr_tl')||document.documentElement.lang):document.documentElement.lang||'fa').toLowerCase();return ['de','en','ar','am','fr','es','ro','tr'].find(x=>raw.startsWith(x))||'fa';})();
+    const shareI18n={
+      fa:{heading:'نان حیات، لقمهٔ روحانی امروز',tagline:'نان حیات، کلامی برای راه امروز',visit:'برای مطالعه مطالب بیشتر درباره عیسی مسیح، کتاب مقدس و رشد در ایمان، از وب‌سایت نان حیات دیدن کنید:',readyBoth:'تصویر و متن لقمه برای اشتراک‌گذاری آماده شد.',readyText:'متن لقمه برای اشتراک‌گذاری آماده شد.',copied:'تصویر دانلود و متن همراه آن کپی شد.',failed:'اشتراک‌گذاری انجام نشد؛ لطفاً دوباره تلاش کنید.'},
+      de:{heading:'Brot des Lebens, geistlicher Impuls des Tages',tagline:'Brot des Lebens, ein Wort für den heutigen Weg',visit:'Mehr über Jesus Christus, die Bibel und Wachstum im Glauben finden Sie auf der Website Brot des Lebens:',readyBoth:'Bild und Text sind zum Teilen bereit.',readyText:'Der Text ist zum Teilen bereit.',copied:'Bild heruntergeladen und Begleittext kopiert.',failed:'Teilen fehlgeschlagen. Bitte versuchen Sie es erneut.'},
+      en:{heading:"Bread of Life, today's spiritual bite",tagline:"Bread of Life, a word for today's journey",visit:'For more about Jesus Christ, the Bible, and growing in faith, visit the Bread of Life website:',readyBoth:'Image and text are ready to share.',readyText:'The text is ready to share.',copied:'Image downloaded and accompanying text copied.',failed:'Sharing failed. Please try again.'},
+      ar:{heading:'خبز الحياة، لقمة روحية لليوم',tagline:'خبز الحياة، كلمة لطريق اليوم',visit:'للمزيد عن يسوع المسيح والكتاب المقدس والنمو في الإيمان، زوروا موقع خبز الحياة:',readyBoth:'الصورة والنص جاهزان للمشاركة.',readyText:'النص جاهز للمشاركة.',copied:'تم تنزيل الصورة ونسخ النص المرافق.',failed:'تعذرت المشاركة. يرجى المحاولة مرة أخرى.'},
+      am:{heading:'የሕይወት እንጀራ፣ የዛሬ መንፈሳዊ ምግብ',tagline:'የሕይወት እንጀራ፣ ለዛሬ መንገድ ቃል',visit:'ስለ ኢየሱስ ክርስቶስ፣ መጽሐፍ ቅዱስ እና በእምነት ማደግ ተጨማሪ ለማንበብ የሕይወት እንጀራ ድረ ገጽን ይጎብኙ:',readyBoth:'ምስሉና ጽሑፉ ለማጋራት ዝግጁ ናቸው።',readyText:'ጽሑፉ ለማጋራት ዝግጁ ነው።',copied:'ምስሉ ወርዷል እና ጽሑፉ ተቀድቷል።',failed:'ማጋራት አልተሳካም። እንደገና ይሞክሩ።'},
+      fr:{heading:'Pain de Vie, pensée spirituelle du jour',tagline:"Pain de Vie, une parole pour le chemin d’aujourd’hui",visit:'Pour en savoir plus sur Jésus-Christ, la Bible et la croissance dans la foi, visitez le site Pain de Vie :',readyBoth:"L’image et le texte sont prêts à être partagés.",readyText:'Le texte est prêt à être partagé.',copied:"L’image a été téléchargée et le texte copié.",failed:'Le partage a échoué. Veuillez réessayer.'},
+      es:{heading:'Pan de Vida, alimento espiritual de hoy',tagline:'Pan de Vida, una palabra para el camino de hoy',visit:'Para leer más sobre Jesucristo, la Biblia y el crecimiento en la fe, visite el sitio Pan de Vida:',readyBoth:'La imagen y el texto están listos para compartir.',readyText:'El texto está listo para compartir.',copied:'La imagen se descargó y el texto se copió.',failed:'No se pudo compartir. Inténtelo de nuevo.'},
+      ro:{heading:'Pâinea Vieții, hrană spirituală pentru astăzi',tagline:'Pâinea Vieții, un cuvânt pentru drumul de azi',visit:'Pentru mai multe despre Isus Hristos, Biblie și creșterea în credință, vizitați site-ul Pâinea Vieții:',readyBoth:'Imaginea și textul sunt gata de distribuit.',readyText:'Textul este gata de distribuit.',copied:'Imaginea a fost descărcată, iar textul a fost copiat.',failed:'Distribuirea nu a reușit. Încercați din nou.'},
+      tr:{heading:'Yaşam Ekmeği, bugünün ruhsal lokması',tagline:'Yaşam Ekmeği, bugünün yolu için bir söz',visit:"İsa Mesih, Kutsal Kitap ve imanda gelişme hakkında daha fazlası için Yaşam Ekmeği web sitesini ziyaret edin:",readyBoth:'Görsel ve metin paylaşmaya hazır.',readyText:'Metin paylaşmaya hazır.',copied:'Görsel indirildi ve eşlik eden metin kopyalandı.',failed:'Paylaşım başarısız oldu. Lütfen tekrar deneyin.'}
+    };
+    const shareStrings=shareI18n[shareLang]||shareI18n.fa;
     const createDailyShareImage=async content=>{
       if(!shareCanvas)return null;
       if(document.fonts&&document.fonts.ready)await document.fonts.ready;
@@ -256,12 +269,14 @@
       const background=await loadShareBackground(content.image);const scale=Math.max(w/background.width,h/background.height),dw=background.width*scale,dh=background.height*scale;
       ctx.drawImage(background,(w-dw)/2,(h-dh)/2,dw,dh);
       const shade=ctx.createLinearGradient(0,0,0,h);shade.addColorStop(0,'rgba(3,16,24,.26)');shade.addColorStop(.48,'rgba(3,16,24,.52)');shade.addColorStop(1,'rgba(3,16,24,.76)');ctx.fillStyle=shade;ctx.fillRect(0,0,w,h);
-      ctx.direction='rtl';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillStyle='#ffffff';ctx.shadowColor='rgba(0,0,0,.65)';ctx.shadowBlur=24;ctx.shadowOffsetY=5;ctx.font='800 64px Vazirmatn, Tahoma, sans-serif';
-      drawWrappedRtl(ctx,content.title,w/2,205,980,84,2);
+      const localizedTitle=(biteTitle&&biteTitle.textContent)?biteTitle.textContent:content.title;
+      ctx.direction=(shareLang==='fa'||shareLang==='ar')?'rtl':'ltr';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillStyle='#ffffff';ctx.shadowColor='rgba(0,0,0,.65)';ctx.shadowBlur=24;ctx.shadowOffsetY=5;ctx.font='800 64px Vazirmatn, Tahoma, Arial, sans-serif';
+      drawWrappedRtl(ctx,localizedTitle,w/2,205,980,84,2);
       ctx.save();ctx.direction='ltr';ctx.textAlign='right';ctx.textBaseline='bottom';ctx.font='700 26px Inter, Arial, sans-serif';ctx.fillStyle='rgba(255,255,255,.94)';ctx.shadowColor='rgba(0,0,0,.78)';ctx.shadowBlur=14;ctx.shadowOffsetY=3;ctx.fillText('nanehayat.com',w-42,h-30);ctx.restore();
       return new Promise(resolve=>shareCanvas.toBlob(resolve,'image/png',.96));
     };
     const refreshDailyShareImage=async content=>{
+      await new Promise(resolve=>setTimeout(resolve,shareLang==='fa'?0:1200));
       const blob=await createDailyShareImage(content);if(!blob)return;
       currentShareBlob=blob;if(currentShareUrl)URL.revokeObjectURL(currentShareUrl);currentShareUrl=URL.createObjectURL(blob);
       if(sharePreview)sharePreview.src=currentShareUrl;
@@ -290,24 +305,24 @@
 
     const shareDaily=document.getElementById('shareDaily'),shareStatus=document.getElementById('shareStatus');
     if(shareDaily)shareDaily.addEventListener('click',async()=>{
-      const shareText=`نان حیات، لقمهٔ روحانی امروز\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\nنان حیات، کلامی برای راه امروز\n\nآقای آریا بهرامی\n\nبرای مطالعه مطالب بیشتر درباره عیسی مسیح، کتاب مقدس و رشد در ایمان، از وب‌سایت نان حیات دیدن کنید:\nhttps://nanehayat.com/`;
+      const shareText=`${shareStrings.heading}\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\n${shareStrings.tagline}\n\n${shareStrings.visit}\nhttps://nanehayat.com/`;
       try{
-        if(!currentShareBlob)currentShareBlob=await createDailyShareImage(currentDailyContent);
+        currentShareBlob=await createDailyShareImage(currentDailyContent);
         const dateName=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin'}).format(new Date());
         const imageFile=currentShareBlob?new File([currentShareBlob],`nane-hayat-${dateName}.png`,{type:'image/png'}):null;
         if(navigator.share&&imageFile&&navigator.canShare&&navigator.canShare({files:[imageFile]})){
-          await navigator.share({title:'نان حیات، لقمهٔ روحانی امروز',text:shareText,files:[imageFile]});
-          if(shareStatus)shareStatus.textContent='تصویر و متن لقمه برای اشتراک‌گذاری آماده شد.';
+          await navigator.share({title:shareStrings.heading,text:shareText,files:[imageFile]});
+          if(shareStatus)shareStatus.textContent=shareStrings.readyBoth;
         }else if(navigator.share){
-          await navigator.share({title:'نان حیات، لقمهٔ روحانی امروز',text:shareText,url:'https://nanehayat.com/'});
-          if(shareStatus)shareStatus.textContent='متن لقمه برای اشتراک‌گذاری آماده شد.';
+          await navigator.share({title:shareStrings.heading,text:shareText,url:'https://nanehayat.com/'});
+          if(shareStatus)shareStatus.textContent=shareStrings.readyText;
         }else{
           await navigator.clipboard.writeText(shareText);
           if(currentShareBlob){const link=document.createElement('a');link.href=URL.createObjectURL(currentShareBlob);link.download=`nane-hayat-${dateName}.png`;link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);}
-          if(shareStatus)shareStatus.textContent='تصویر دانلود و متن همراه آن کپی شد.';
+          if(shareStatus)shareStatus.textContent=shareStrings.copied;
         }
       }catch(error){
-        if(error.name!=='AbortError'&&shareStatus)shareStatus.textContent='اشتراک‌گذاری انجام نشد؛ لطفاً دوباره تلاش کنید.';
+        if(error.name!=='AbortError'&&shareStatus)shareStatus.textContent=shareStrings.failed;
       }
     });
 
