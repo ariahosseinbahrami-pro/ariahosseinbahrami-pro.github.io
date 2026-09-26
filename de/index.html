@@ -209,9 +209,11 @@
     let renderedDayKey;
     const renderDailyContent=()=>{
       const dayKey=berlinDayKey();
-      const content=getSeasonalContent()||dailyContents[(dayKey-1)%dailyContents.length];
+      const content=dailyContents[0];
       currentDailyContent=content;
       if(verseText&&verseRef){verseText.textContent=content.verse;verseRef.textContent=content.reference;}
+      const featureImage=document.getElementById('dailyFeatureImage'),featureTitle=document.getElementById('dailyFeatureTitle'),imageTitle=document.getElementById('dailyImageTitle');
+      if(featureImage)featureImage.src=content.image;if(featureTitle)featureTitle.textContent=content.title;if(imageTitle)imageTitle.textContent=content.title;
       if(biteTitle&&biteText){
         biteTitle.textContent=content.title;
         biteText.textContent=content.reflection;
@@ -226,7 +228,7 @@
 
     const shareDaily=document.getElementById('shareDaily'),shareStatus=document.getElementById('shareStatus');
     if(shareDaily)shareDaily.addEventListener('click',async()=>{
-      const shareText=`Brot des Lebens, geistlicher Impuls des Tages\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\nBrot des Lebens, ein Wort Gottes für heute\n\nآریا بهرامی\n\nhttps://nanehayat.com/`;
+      const shareText=`Brot des Lebens, geistlicher Impuls des Tages\n\n${biteTitle.textContent}\n\n${biteText.textContent}\n\n${verseText.textContent}\n${verseRef.textContent}\n\nBrot des Lebens, ein Wort Gottes für heute\n\nhttps://nanehayat.com/`;
       try{
         if(!currentShareBlob)currentShareBlob=await createDailyShareImage(currentDailyContent);
         const dateName=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin'}).format(new Date());
