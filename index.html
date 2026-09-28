@@ -290,7 +290,7 @@
     const renderDailyContent=()=>{
       const dayKey=berlinDayKey();
       const todayBerlin=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-      const content=(todayBerlin==='2026-09-26'||todayBerlin==='2026-09-27')?dailyContents[0]:(getSeasonalContent()||dailyContents[dayKey%dailyContents.length]);
+      const content=dailyContents[0];
       currentDailyContent=content;
       if(verseText&&verseRef){verseText.textContent=content.verse;verseRef.textContent=content.reference;}
       if(biteTitle&&biteText){
