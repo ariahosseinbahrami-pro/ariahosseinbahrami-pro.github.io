@@ -308,17 +308,10 @@ border:1px solid rgba(177,130,51,.38);box-shadow:inset 0 2px 3px rgba(255,255,25
       return y+(lines.length*lineHeight);
     };
     const loadShareBackground=src=>new Promise((resolve,reject)=>{const image=new Image();image.crossOrigin='anonymous';image.onload=()=>resolve(image);image.onerror=reject;image.src=new URL(src,'https://nanehayat.com/').href;});
-    const shareLang=(()=>{const q=new URLSearchParams(location.search),raw=(location.hostname.endsWith('.translate.goog')?(q.get('_x_tr_tl')||document.documentElement.lang):document.documentElement.lang||'fa').toLowerCase();return ['de','en','ar','am','fr','es','ro','tr'].find(x=>raw.startsWith(x))||'fa';})();
+    const shareLang='fa';
     const shareI18n={
       fa:{heading:'نان حیات، لقمهٔ روحانی امروز',tagline:'نان حیات، کلامی برای راه امروز',visit:'برای مطالعه مطالب بیشتر درباره عیسی مسیح، کتاب مقدس و رشد در ایمان، از وب‌سایت نان حیات دیدن کنید:',readyBoth:'تصویر و متن لقمه برای اشتراک‌گذاری آماده شد.',readyText:'متن لقمه برای اشتراک‌گذاری آماده شد.',copied:'تصویر دانلود و متن همراه آن کپی شد.',failed:'اشتراک‌گذاری انجام نشد؛ لطفاً دوباره تلاش کنید.'},
       de:{heading:'Brot des Lebens, geistlicher Impuls des Tages',tagline:'Brot des Lebens, ein Wort für den heutigen Weg',visit:'Mehr über Jesus Christus, die Bibel und Wachstum im Glauben finden Sie auf der Website Brot des Lebens:',readyBoth:'Bild und Text sind zum Teilen bereit.',readyText:'Der Text ist zum Teilen bereit.',copied:'Bild heruntergeladen und Begleittext kopiert.',failed:'Teilen fehlgeschlagen. Bitte versuchen Sie es erneut.'},
-      en:{heading:"Bread of Life, today's spiritual bite",tagline:"Bread of Life, a word for today's journey",visit:'For more about Jesus Christ, the Bible, and growing in faith, visit the Bread of Life website:',readyBoth:'Image and text are ready to share.',readyText:'The text is ready to share.',copied:'Image downloaded and accompanying text copied.',failed:'Sharing failed. Please try again.'},
-      ar:{heading:'خبز الحياة، لقمة روحية لليوم',tagline:'خبز الحياة، كلمة لطريق اليوم',visit:'للمزيد عن يسوع المسيح والكتاب المقدس والنمو في الإيمان، زوروا موقع خبز الحياة:',readyBoth:'الصورة والنص جاهزان للمشاركة.',readyText:'النص جاهز للمشاركة.',copied:'تم تنزيل الصورة ونسخ النص المرافق.',failed:'تعذرت المشاركة. يرجى المحاولة مرة أخرى.'},
-      am:{heading:'የሕይወት እንጀራ፣ የዛሬ መንፈሳዊ ምግብ',tagline:'የሕይወት እንጀራ፣ ለዛሬ መንገድ ቃል',visit:'ስለ ኢየሱስ ክርስቶስ፣ መጽሐፍ ቅዱስ እና በእምነት ማደግ ተጨማሪ ለማንበብ የሕይወት እንጀራ ድረ ገጽን ይጎብኙ:',readyBoth:'ምስሉና ጽሑፉ ለማጋራት ዝግጁ ናቸው።',readyText:'ጽሑፉ ለማጋራት ዝግጁ ነው።',copied:'ምስሉ ወርዷል እና ጽሑፉ ተቀድቷል።',failed:'ማጋራት አልተሳካም። እንደገና ይሞክሩ።'},
-      fr:{heading:'Pain de Vie, pensée spirituelle du jour',tagline:"Pain de Vie, une parole pour le chemin d’aujourd’hui",visit:'Pour en savoir plus sur Jésus-Christ, la Bible et la croissance dans la foi, visitez le site Pain de Vie :',readyBoth:"L’image et le texte sont prêts à être partagés.",readyText:'Le texte est prêt à être partagé.',copied:"L’image a été téléchargée et le texte copié.",failed:'Le partage a échoué. Veuillez réessayer.'},
-      es:{heading:'Pan de Vida, alimento espiritual de hoy',tagline:'Pan de Vida, una palabra para el camino de hoy',visit:'Para leer más sobre Jesucristo, la Biblia y el crecimiento en la fe, visite el sitio Pan de Vida:',readyBoth:'La imagen y el texto están listos para compartir.',readyText:'El texto está listo para compartir.',copied:'La imagen se descargó y el texto se copió.',failed:'No se pudo compartir. Inténtelo de nuevo.'},
-      ro:{heading:'Pâinea Vieții, hrană spirituală pentru astăzi',tagline:'Pâinea Vieții, un cuvânt pentru drumul de azi',visit:'Pentru mai multe despre Isus Hristos, Biblie și creșterea în credință, vizitați site-ul Pâinea Vieții:',readyBoth:'Imaginea și textul sunt gata de distribuit.',readyText:'Textul este gata de distribuit.',copied:'Imaginea a fost descărcată, iar textul a fost copiat.',failed:'Distribuirea nu a reușit. Încercați din nou.'},
-      tr:{heading:'Yaşam Ekmeği, bugünün ruhsal lokması',tagline:'Yaşam Ekmeği, bugünün yolu için bir söz',visit:"İsa Mesih, Kutsal Kitap ve imanda gelişme hakkında daha fazlası için Yaşam Ekmeği web sitesini ziyaret edin:",readyBoth:'Görsel ve metin paylaşmaya hazır.',readyText:'Metin paylaşmaya hazır.',copied:'Görsel indirildi ve eşlik eden metin kopyalandı.',failed:'Paylaşım başarısız oldu. Lütfen tekrar deneyin.'}
     };
     const shareStrings=shareI18n[shareLang]||shareI18n.fa;
     const createDailyShareImage=async content=>{
@@ -435,6 +428,6 @@ border:1px solid rgba(177,130,51,.38);box-shadow:inset 0 2px 3px rgba(255,255,25
     const questionStatus=document.getElementById('questionStatus');
     if(questionStatus&&new URLSearchParams(location.search).get('question')==='sent')questionStatus.textContent='پیام شما با موفقیت ارسال شد. سپاس از اعتمادتان.';
   </script>
-  <script src="language-switcher.js?v=20261021-1" defer></script>
+  <script src="language-switcher.js?v=native-fa-de-1" defer></script>
 </body>
 </html>
